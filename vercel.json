@@ -1,17 +1,15 @@
 {
   "version": 2,
   "builds": [
-    {"src": "index.js", "use": "@vercel/node" }
+    {
+      "src": "index.js",
+      "use": "@vercel/node"
+    }
   ],
   "routes": [
-    { "src": "/(.*)", "dest": "index.js" }
-  ],
-  "build": {
-    "env": {
-      "NODE_ENV": "production"
+    {
+      "src": "/(.*)",
+      "dest": "index.js"
     }
-  },
-  "scripts": {
-    "postinstall": "npm run setup:linux && npm run start"
-  }
+  ]
 }

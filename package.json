@@ -3,7 +3,8 @@
   "module": "index.js",
   "type": "commonjs",
   "scripts": {
-    "start": "node index.js",
+    "start": "xdg-open setup/config/index.html && node index.js",
+    "node-start": "node index.js",
     "watch": "nodemon index.js",
     "migrate": "node convert.js",
     "lint": "eslint .",
