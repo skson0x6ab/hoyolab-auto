@@ -175,7 +175,6 @@ dist
 .DS_Store
 
 # Misc
-/config.json5
 types.js
 bun.lockb
 
