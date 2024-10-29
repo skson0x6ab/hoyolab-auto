@@ -19,6 +19,10 @@ const RegionalTaskManager = require("./object/regional-task-manager.js");
 let config;
 try {
 	config = JSON5.parse(file.readFileSync("./config.json5"));
+	const hoyoCookie = process.env.HOYO_COOKIE;
+	config.accounts[2].data[0].cookie = hoyoCookie;
+	config.accounts[3].data[0].cookie = hoyoCookie;
+	config.accounts[4].data[0].cookie = hoyoCookie;
 }
 catch (e) {
 	if (file.existsSync("./config.json5") === false) {
