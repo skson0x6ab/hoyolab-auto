@@ -128,7 +128,7 @@
                     stamina: {
                         check: true,
                         threshold: 200,
-                        persistent: false,mi18nLang=ko-kr; DEVICEFP_SEED_ID=e1db59faf4fd92de; DEVICEFP_SEED_TIME=1723
+                        persistent: false,
                     },
                     discord: {
                         // Your Discord user ID to ping you when to do your dailies/weeklies
