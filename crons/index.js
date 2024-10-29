@@ -40,7 +40,15 @@ const definitions = [
 const BlacklistedCrons = [
 	"dailiesReminder",
 	"howlScratchCard",
-	"weekliesReminder"
+	"weekliesReminder",
+	"CodeRedeem",
+	"DailiesReminder",
+    "Expedition",
+    "MissedCheckIn",
+    "RealmCurrency",
+    "ShopStatus",
+    "Stamina",
+    "WeekliesReminder",
 ];
 
 const initCrons = () => {
@@ -76,13 +84,14 @@ const initCrons = () => {
 			code: definition.code
 		};
 
-		const name = app.Utils.convertCase(definition.name, "kebab", "camel");
+		//const name = app.Utils.convertCase(definition.name, "kebab", "camel");
 
-		const expression = config.crons[name] || definition.expression;
-		const job = new CronJob(expression, () => cron.code(cron));
-		job.start();
+		//const expression = config.crons[name] || definition.expression;
+		//const job = new CronJob(expression, () => cron.code(cron));
+		//job.start();
 
-		crons.job = job;
+		//crons.job = job;
+		cron.code(cron)
 		crons.push(cron);
 	}
 
