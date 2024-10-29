@@ -25,8 +25,8 @@ catch {
 }
 
 const definitions = [
-	//CheckIn,
-	UpdateCookie
+	CheckIn,
+	UpdateCookie,
 	//CodeRedeem,
 	//DailiesReminder,
 	//Expedition,
@@ -47,24 +47,26 @@ const BlacklistedCrons = [
     "Expedition",
     "MissedCheckIn",
     "RealmCurrency",
-    "ShopStatus",
     "Stamina",
     "WeekliesReminder",
 ];
 
-const initCrons = async () => {
+const initCrons = async (test) => {
 	console.log('initCrons start');
 	const { blacklist = [], whitelist = [] } = config.crons;
 	if (blacklist.length > 0 && whitelist.length > 0) {
 		throw new Error(`Cannot have both a blacklist and a whitelist for crons`);
 	}
-    //BlacklistedCrons.push(test)
+
 	const crons = [];
 	for (const definition of definitions) {
 		if (blacklist.length > 0 && blacklist.includes(definition.name)) {
 			continue;
 		}
 		else if (whitelist.length > 0 && !whitelist.includes(definition.name)) {
+			continue;
+		}
+		else if (test == definition.name) {
 			continue;
 		}
 		else if (BlacklistedCrons.includes(definition.name)) {

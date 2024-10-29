@@ -117,7 +117,8 @@
 
 		const end = process.hrtime.bigint();
 		const { initCrons } = require("./crons/index.js");
-		await initCrons();
+		await initCrons("update-cookie");
+
 		app.Logger.info("Client", `Initialize completed (${Number(end - start) / 1e6}ms)`);
 
 		process.on("unhandledRejection", (reason) => {

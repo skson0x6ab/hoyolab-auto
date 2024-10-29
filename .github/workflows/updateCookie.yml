@@ -2,7 +2,7 @@ name: Update HoyoCookie
 
 on:
   schedule:
-    - cron: '0 */2 * * *' # KST 8시마다 실행
+    - cron: '0 */2 * * *' 
   workflow_dispatch:
 
 jobs:
@@ -23,7 +23,7 @@ jobs:
       - name: Install npm dependencies
         run: npm install
 
-      - name: Update Hoyo_Cookie
-        run: node test.js
+      - name: Start updateCookie
+        run: node updateCookie.js
 
       

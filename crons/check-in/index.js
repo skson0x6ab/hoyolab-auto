@@ -4,7 +4,6 @@ module.exports = {
 	description: "Run daily check-in every day at midnight or your specified time",
 	code: (async function checkIn () {
 		const accounts = app.HoyoLab.getActiveAccounts();
-		console.log('Start check-in',accounts);
 		if (accounts.length === 0) {
 			app.Logger.warn("Cron:CheckIn", "No active accounts found for HoyoLab");
 			return;

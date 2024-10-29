@@ -538,7 +538,6 @@ module.exports = class HoyoLab {
 				Cookie: accountData.cookie
 			}
 		});
-        console.log(res)
 		if (!res.ok) {
 			app.Logger.log(`${this.fullName}:UpdateCookie`, {
 				message: "Failed to update cookie",
