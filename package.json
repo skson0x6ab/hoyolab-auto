@@ -3,7 +3,7 @@
   "module": "index.js",
   "type": "commonjs",
   "scripts": {
-    "start": "node index.js", ,
+    "start": "node index.js",
     "watch": "nodemon index.js",
     "migrate": "node convert.js",
     "lint": "eslint .",
