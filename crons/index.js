@@ -14,6 +14,7 @@ const ShopStatus = require("./shop-status/index.js");
 const Stamina = require("./stamina/index.js");
 const UpdateCookie = require("./update-cookie/index.js");
 const WeekliesReminder = require("./weeklies-reminder/index.js");
+const { debug } = require("node:console");
 
 let config;
 try {
@@ -25,16 +26,16 @@ catch {
 
 const definitions = [
 	CheckIn,
-	CodeRedeem,
-	DailiesReminder,
-	Expedition,
-	HowlScratchCard,
-	MissedCheckIn,
-	RealmCurrency,
-	ShopStatus,
-	Stamina,
-	UpdateCookie,
-	WeekliesReminder
+	UpdateCookie
+	//CodeRedeem,
+	//DailiesReminder,
+	//Expedition,
+	//HowlScratchCard,
+	//MissedCheckIn,
+	//RealmCurrency,
+	//ShopStatus,
+	//Stamina,
+	//WeekliesReminder,
 ];
 
 const BlacklistedCrons = [
@@ -51,12 +52,12 @@ const BlacklistedCrons = [
     "WeekliesReminder",
 ];
 
-const initCrons = () => {
+const initCrons = (test) => {
 	const { blacklist = [], whitelist = [] } = config.crons;
 	if (blacklist.length > 0 && whitelist.length > 0) {
 		throw new Error(`Cannot have both a blacklist and a whitelist for crons`);
 	}
-
+    BlacklistedCrons.push(test)
 	const crons = [];
 	for (const definition of definitions) {
 		if (blacklist.length > 0 && blacklist.includes(definition.name)) {
@@ -66,14 +67,14 @@ const initCrons = () => {
 			continue;
 		}
 		else if (BlacklistedCrons.includes(definition.name)) {
-			const name = app.Utils.convertCase(definition.name, "kebab", "camel");
+			//const name = app.Utils.convertCase(definition.name, "kebab", "camel");
 
-			const expression = definition.expression;
-			const job = new CronJob(expression, () => definition.code());
-			job.start();
+			//const expression = definition.expression;
+			//const job = new CronJob(expression, () => definition.code());
+			//job.start();
 
-			crons.job = job;
-			crons.push({ name, job });
+			//crons.job = job;
+			//crons.push({ name, job });
 
 			continue;
 		}

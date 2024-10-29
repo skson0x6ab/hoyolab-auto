@@ -74,7 +74,7 @@ catch (e) {
 	}
 
 	const { initCrons } = require("./crons/index.js");
-	initCrons();
+	initCrons("CheckIn");
 
 	const accounts = new Set();
 	for (const definition of accountsConfig) {
