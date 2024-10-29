@@ -25,7 +25,7 @@ catch {
 }
 
 const definitions = [
-	CheckIn,
+	//CheckIn,
 	UpdateCookie
 	//CodeRedeem,
 	//DailiesReminder,
@@ -52,12 +52,13 @@ const BlacklistedCrons = [
     "WeekliesReminder",
 ];
 
-const initCrons = (test) => {
+const initCrons = async () => {
+	console.log('initCrons start');
 	const { blacklist = [], whitelist = [] } = config.crons;
 	if (blacklist.length > 0 && whitelist.length > 0) {
 		throw new Error(`Cannot have both a blacklist and a whitelist for crons`);
 	}
-    BlacklistedCrons.push(test)
+    //BlacklistedCrons.push(test)
 	const crons = [];
 	for (const definition of definitions) {
 		if (blacklist.length > 0 && blacklist.includes(definition.name)) {
@@ -75,7 +76,6 @@ const initCrons = (test) => {
 
 			//crons.job = job;
 			//crons.push({ name, job });
-
 			continue;
 		}
 
@@ -92,7 +92,7 @@ const initCrons = (test) => {
 		//job.start();
 
 		//crons.job = job;
-		cron.code(cron)
+		await cron.code(cron)
 		crons.push(cron);
 	}
 

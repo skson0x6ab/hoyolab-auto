@@ -1,9 +1,10 @@
 module.exports = {
 	name: "check-in",
-	expression: "0 0 0 * * *",
+	//expression: "0 0 0 * * *",
 	description: "Run daily check-in every day at midnight or your specified time",
 	code: (async function checkIn () {
 		const accounts = app.HoyoLab.getActiveAccounts();
+		console.log('Start check-in',accounts);
 		if (accounts.length === 0) {
 			app.Logger.warn("Cron:CheckIn", "No active accounts found for HoyoLab");
 			return;
@@ -17,6 +18,7 @@ module.exports = {
 			const execution = await platform.checkIn();
 			if (execution.length === 0) {
 				app.Logger.info("Cron:CheckIn", "All accounts either signed in or failed to sign in");
+				console.log("All accounts either signed in or failed to sign in");
 				continue;
 			}
 

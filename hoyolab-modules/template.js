@@ -538,7 +538,7 @@ module.exports = class HoyoLab {
 				Cookie: accountData.cookie
 			}
 		});
-
+        console.log(res)
 		if (!res.ok) {
 			app.Logger.log(`${this.fullName}:UpdateCookie`, {
 				message: "Failed to update cookie",
@@ -549,35 +549,36 @@ module.exports = class HoyoLab {
 					body: res.body
 				}
 			});
-
 			return { success: false };
 		}
 
-		const data = res.body.data;
-		if (!data || data.status !== 1 || !data?.cookie_info) {
-			app.Logger.log(`${this.fullName}:UpdateCookie`, {
-				message: "Failed to update cookie",
-				args: {
-					platform: this.name,
-					uid: accountData.uid,
-					region: accountData.region,
-					body: JSON.parse(res.body)
-				}
-			});
+		//const data = res.body.data;
+		//if (!data || data.status !== 1 || !data?.cookie_info) {
+		//	app.Logger.log(`${this.fullName}:UpdateCookie`, {
+		//		message: "Failed to update cookie",
+		//		args: {
+		//			platform: this.name,
+		//			uid: accountData.uid,
+		//			region: accountData.region,
+		//			body: JSON.parse(res.body.code)
+		//		}
+		//	});
+		//	return { success: false };
+		//}
 
-			return { success: false };
-		}
-
-		const accountId = data.cookie_info.account_id;
-		const token = data.cookie_info.cookie_token;
-
-		return {
+		//const accountId = data.cookie_info.account_id;
+		//const token = data.cookie_info.cookie_token;
+		return{
 			success: true,
-			data: {
-				accountId,
-				token
-			}
+			data: res.timings.upload
 		};
+		//return {
+		//	success: true,
+		//	data: {
+		//		accountId,
+		//		token
+		//	}
+		//};
 	}
 
 	static create (type, config) {
