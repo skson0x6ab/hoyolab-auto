@@ -5,7 +5,7 @@ module.exports = {
 	code: (async function updateCookie () {
 		// eslint-disable-next-line object-curly-spacing
 		const accounts = app.HoyoLab.getActiveAccounts({ blacklist: ["honkai", "tot"] });
-		console.log('Update cookie8');
+		app.Logger.info("Updating Cookie...");
 		if (accounts.length === 0) {
 			return;
 		}
@@ -21,6 +21,8 @@ module.exports = {
 				blacklist: ["cookie_token", "account_id"]
 			});
 
+            app.Logger.info("success: ", refreshCookie.success);
+            app.Logger.info("upload time: ", refreshCookie.data);
 			//const { accountId, token } = refreshCookie.data;
 			//account.cookie = `${cookieData}; cookie_token=${token}; account_id=${accountId}`;
 			//platform.update(account);

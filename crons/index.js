@@ -52,7 +52,7 @@ const BlacklistedCrons = [
 ];
 
 const initCrons = async (test) => {
-	console.log('initCrons start');
+
 	const { blacklist = [], whitelist = [] } = config.crons;
 	if (blacklist.length > 0 && whitelist.length > 0) {
 		throw new Error(`Cannot have both a blacklist and a whitelist for crons`);
