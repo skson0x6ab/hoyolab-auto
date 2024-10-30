@@ -27,7 +27,7 @@ catch {
 const definitions = [
 	CheckIn,
 	UpdateCookie,
-	//CodeRedeem,
+	CodeRedeem,
 	//DailiesReminder,
 	//Expedition,
 	//HowlScratchCard,

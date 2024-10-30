@@ -8,17 +8,17 @@ const {
 
 module.exports = {
 	name: "code-redeem",
-	expression: "* * * * *",
+	//expression: "* * * * *",
 	description: "Check and redeem codes for supported games from HoyoLab.",
 	code: async function codeRedeem () {
 		try {
-			app.Logger.debug("CodeRedeem", "Starting code redemption process");
+			app.Logger.info("CodeRedeem", "Starting code redemption process");
 
 			const accountData = app.HoyoLab.getActiveAccounts({
 				blacklist: ["honkai", "tot"]
 			});
 
-			app.Logger.debug("CodeRedeem", `Found ${accountData.length} active accounts`);
+			app.Logger.info("CodeRedeem", `Found ${accountData.length} active accounts`);
 
 			if (accountData.length === 0) {
 				app.Logger.debug("CodeRedeem", "No active accounts found.");
