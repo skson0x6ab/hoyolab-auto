@@ -21,20 +21,20 @@ module.exports = {
 			app.Logger.info("CodeRedeem", `Found ${accountData.length} active accounts`);
 
 			if (accountData.length === 0) {
-				app.Logger.debug("CodeRedeem", "No active accounts found.");
+				app.Logger.info("CodeRedeem", "No active accounts found.");
 				return;
 			}
 
 			const redeemDisabled = accountData.every(i => i.redeemCode === false);
 			if (redeemDisabled) {
-				app.Logger.debug("CodeRedeem", "Code redeem is disabled for all accounts.");
+				app.Logger.info("CodeRedeem", "Code redeem is disabled for all accounts.");
 				return;
 			}
 
-			app.Logger.debug("CodeRedeem", "Fetching new codes");
+			app.Logger.info("CodeRedeem", "Fetching new codes");
 			const codeData = await fetchCodes(accountData);
 			if (!codeData) {
-				app.Logger.debug("CodeRedeem", "No new codes found.");
+				app.Logger.info("CodeRedeem", "No new codes found.");
 				return;
 			}
 
@@ -45,7 +45,7 @@ module.exports = {
 
 			const { genshin, starrail, zenless } = codeData;
 
-			app.Logger.debug("CodeRedeem", `Processing codes: Genshin (${genshin.length}), Star Rail (${starrail.length}), Zenless (${zenless.length})`);
+			app.Logger.info("CodeRedeem", `Processing codes: Genshin (${genshin.length}), Star Rail (${starrail.length}), Zenless (${zenless.length})`);
 
 			await Promise.all([
 				processCodesForGame("genshin", genshin, redeemGenshin, telegram, webhook),
@@ -66,13 +66,13 @@ module.exports = {
 
 async function processCodesForGame (gameName, codes, redeemFunction, telegram, webhook) {
 	if (codes.length === 0) {
-		app.Logger.debug("CodeRedeem", `No new codes for ${gameName}.`);
+		app.Logger.info("CodeRedeem", `No new codes for ${gameName}.`);
 		return;
 	}
 
 	const accounts = app.HoyoLab.getActiveAccounts({ whitelist: gameName });
 	if (accounts.length === 0) {
-		app.Logger.debug("CodeRedeem", `No active accounts found for ${gameName}.`);
+		app.Logger.info("CodeRedeem", `No active accounts found for ${gameName}.`);
 		return;
 	}
 
@@ -80,12 +80,12 @@ async function processCodesForGame (gameName, codes, redeemFunction, telegram, w
 
 	for (const account of accounts) {
 		if (account.redeemCode === false) {
-			app.Logger.debug("CodeRedeem", `Code redemption disabled for account ${account.uid} (${gameName}).`);
+			app.Logger.info("CodeRedeem", `Code redemption disabled for account ${account.uid} (${gameName}).`);
 			continue;
 		}
 
 		try {
-			app.Logger.debug("CodeRedeem", `Redeeming codes for account ${account.uid} (${gameName}).`);
+			app.Logger.info("CodeRedeem", `Redeeming codes for account ${account.uid} (${gameName}).`);
 			const { success, failed } = await redeemFunction(account, codes);
 
 			app.Logger.info("CodeRedeem", `Account ${account.uid} (${gameName}): ${success.length} code(s) redeemed, ${failed.length} failed.`);
