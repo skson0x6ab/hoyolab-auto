@@ -25,7 +25,7 @@ module.exports = {
 				return;
 			}
 
-            app.Logger.info('accountData: ' accountData)
+            app.Logger.info("accountData: ", accountData)
 			const redeemDisabled = accountData.every(i => i.redeemCode === false);
 			if (redeemDisabled) {
 				app.Logger.info("CodeRedeem", "Code redeem is disabled for all accounts.");
