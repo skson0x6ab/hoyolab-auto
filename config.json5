@@ -64,7 +64,7 @@
             data: [
                 {
                     cookie: '',
-                    redeemCode: true
+                    redeemCode: true,
                     dailiesCheck: true, // Enable this if you want to get reminded to do your daily commissions
                     weekliesCheck: true, // Enable this if you want to get reminded to do your weeklies
                     realm: {
