@@ -64,7 +64,7 @@
             data: [
                 {
                     cookie: '',
-                    redeemCode: true,
+                    redeemCode: false,
                     dailiesCheck: true, // Enable this if you want to get reminded to do your daily commissions
                     weekliesCheck: true, // Enable this if you want to get reminded to do your weeklies
                     realm: {
@@ -93,7 +93,7 @@
             data: [
                 {
                     cookie: '',
-                    redeemCode: true,
+                    redeemCode: false,
                     dailiesCheck: true,
                     weekliesCheck: true,
                     stamina: {
@@ -122,7 +122,7 @@
             data: [
                 {
                     cookie: '',
-                    redeemCode: true,
+                    redeemCode: false,
                     shopStatus: false, // This will check if your shop has finished selling videos
                     dailiesCheck: true,
                     stamina: {
