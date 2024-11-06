@@ -19,7 +19,7 @@
         },
         {
             id: 3,
-            active: true, // Set to true if you want to send notification to Discord webhook
+            active: false, // Set to true if you want to send notification to Discord webhook
             type: 'webhook',
             url: 'https://hooks.slack.com/services/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', // You can follow this guide to create a webhook: https://github.com/torikushiii/hoyolab-auto/blob/main/setup/DISCORD_WEBHOOK.md
         },
