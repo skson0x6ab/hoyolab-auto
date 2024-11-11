@@ -73,7 +73,7 @@ const redeemCode = async (account, code, redeemFunction) => {
 				redeemFunction(account, code, cookieData),
 				new Promise((_, reject) => setTimeout(TIMEOUT_DURATION).then(() => reject(new Error("Request timed out"))))
 			]);
-            app.Logger.info(res)
+
 			if (res.statusCode !== 200) {
 				throw new app.Error({
 					message: "API returned non-200 status code.",

@@ -56,7 +56,7 @@ const fetchAll = async () => {
 	}
 };
 
-const redeem = async (account, code, cookieData) => app.Got("HoYoLab", {
+const redeem1 = async (account, code, cookieData) => app.Got("HoYoLab", {
 	url: "https://sg-hk4e-api.hoyoverse.com/common/apicdkey/api/webExchangeCdkey",
 	searchParams: {
 		uid: account.uid,
@@ -70,6 +70,31 @@ const redeem = async (account, code, cookieData) => app.Got("HoYoLab", {
 		Cookie: cookieData
 	}
 });
+
+const redeem = async (account, code, cookieData) => {
+  try {
+    const response = await app.Got("HoYoLab", {
+      url: "https://sg-hk4e-api.hoyoverse.com/common/apicdkey/api/webExchangeCdkey",
+      searchParams: {
+        uid: account.uid,
+        region: account.region,
+        lang: "en",
+        cdkey: code.code,
+        game_biz: "hk4e_global",
+        sLangKey: "en-us"
+      },
+      headers: {
+        Cookie: cookieData
+      }
+    });
+    app.Logger.info(response);  // 응답 내용 확인
+    return response;  // 응답을 반환
+  } catch (error) {
+    app.Logger.info('Error in redeem:', error);  // 오류 처리
+    throw error;  // 오류 던지기
+  }
+};
+
 
 module.exports = {
 	fetchAll,
