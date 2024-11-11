@@ -35,9 +35,20 @@
 			message: `An error occurred when reading your configuration file. Please check and fix the following error:\n${e}`
 		});
 	}
+    let redeem_genshin = './redeem_genshin.txt';
 
 	(async () => {
-		const start = process.hrtime.bigint(); //고해상도 타이머
+		process.on("unhandledRejection", (reason) => {
+    		if (!(reason instanceof Error)) {
+    			return;
+    		}
+
+    		app.Logger.log("Client", {
+    			message: "Unhandled promise rejection",
+    			args: { reason }
+    		});
+    	});
+		//const start = process.hrtime.bigint(); //고해상도 타이머
 
 		const platformsConfig = config.platforms; // discord, telegram, 그외의 webhook 지원하는 어플리케이션들 관련 config
 		if (!platformsConfig || platformsConfig.length === 0) {
@@ -115,20 +126,11 @@
 
 		await Promise.all(promises);
 
-		const end = process.hrtime.bigint();
+		//const end = process.hrtime.bigint();
 		const { initCrons } = require("./crons/index.js");
 		await initCrons("update-cookie");
 
-		app.Logger.info("Client", `Initialize completed (${Number(end - start) / 1e6}ms)`);
+		app.Logger.info("Client Initialize completed");
 
-		process.on("unhandledRejection", (reason) => {
-			if (!(reason instanceof Error)) {
-				return;
-			}
 
-			app.Logger.log("Client", {
-				message: "Unhandled promise rejection",
-				args: { reason }
-			});
-		});
 	})();
