@@ -177,12 +177,12 @@ module.exports = new Proxy(StaticGot, {
 		if (typeof args[0] === "string") {
 			const instance = StaticGot.get(args[0]);
 			if (instance) {
-			    const response = await instance(...args.slice(1));
+			    const response = instance(...args.slice(1));
 			    console.log("Response from app.Got call:", response);
 				return instance(...args.slice(1));
 			}
 		}
-        const response = await gotModule.got(...args);
+        const response = gotModule.got(...args);
         console.log("Response from default got call:", response);
 		return gotModule.got(...args);
 
