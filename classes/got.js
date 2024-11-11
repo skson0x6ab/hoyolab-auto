@@ -164,27 +164,27 @@ class StaticGot {
 }
 
 module.exports = new Proxy(StaticGot, {
-	apply: function (target, thisArg, args) {
-		const options = args.find((i) => typeof i === "object" && i?.constructor?.name === "Object");
+	apply: async function (target, thisArg, args) {
+		const options = await args.find((i) => typeof i === "object" && i?.constructor?.name === "Object");
 		if (options && typeof options.url === "string" && !options.skipURLSanitization) {
-			options.url = sanitize(options.url);
+			options.url = await sanitize(options.url);
 		}
 
 		if (typeof args[1] === "string") {
-			args[1] = sanitize(args[1]);
+			args[1] = await sanitize(args[1]);
 		}
 
 		if (typeof args[0] === "string") {
-			const instance = StaticGot.get(args[0]);
+			const instance = await StaticGot.get(args[0]);
 			if (instance) {
-			    const response = instance(...args.slice(1));
-			    console.log("Response from app.Got call:", response);
-				return instance(...args.slice(1));
+			    const response = await instance(...args.slice(1));
+			    console.log("Response from app.Got call:", response.json());
+				return await instance(...args.slice(1));
 			}
 		}
-        const response = gotModule.got(...args);
-        console.log("Response from default got call:", response);
-		return gotModule.got(...args);
+        const response = await gotModule.got(...args);
+        console.log("Response from default got call:", response.json());
+		return await gotModule.got(...args);
 
 	},
 
