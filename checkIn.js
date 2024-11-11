@@ -48,7 +48,7 @@
     			args: { reason }
     		});
     	});
-		//const start = process.hrtime.bigint(); //고해상도 타이머
+		const start = process.hrtime.bigint(); //고해상도 타이머
 
 		const platformsConfig = config.platforms; // discord, telegram, 그외의 webhook 지원하는 어플리케이션들 관련 config
 		if (!platformsConfig || platformsConfig.length === 0) {
@@ -126,7 +126,7 @@
 
 		await Promise.all(promises);
 
-		//const end = process.hrtime.bigint();
+		const end = process.hrtime.bigint();
 		const { initCrons } = require("./crons/index.js");
 		await initCrons("update-cookie");
 
