@@ -130,9 +130,10 @@ const redeemCodes = async (account, codeList, redeemFunction) => {
 	for (const code of codeList) {
 		app.Logger.info(`CodeRedeem:${account.platform}`, `Attempting to redeem code: ${code.code}`);
 		const result = await redeemCode(account, code, redeemFunction);
+		app.Logger.info(result)
 		if (result === null) {
 			await setTimeout(Math.max(7000, RETRY_DELAY));
-			app.Logger.debug(`CodeRedeem:${account.platform}`, `Code ${code.code} skipped (likely expired or invalid)`);
+			app.Logger.info(`CodeRedeem:${account.platform}`, `Code ${code.code} skipped (likely expired or invalid)`);
 			continue;
 		}
 		if (result.success) {
