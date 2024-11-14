@@ -58,6 +58,8 @@ const fetchAll = async () => {
 
 const redeem = async (account, code, cookieData) => app.Got("HoYoLab", {
 	url: "https://sg-hk4e-api.hoyoverse.com/common/apicdkey/api/webExchangeCdkey",
+	responseType: "json",
+	throwHttpErrors: false,
 	searchParams: {
 		uid: account.uid,
 		region: account.region,
