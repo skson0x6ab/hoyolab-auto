@@ -1,9 +1,9 @@
 name: Update HoyoLab Cookie
 
 on:
-  schedule:
-    - cron: '0 */2 * * *' 
-  workflow_dispatch:
+  #schedule:
+  #  - cron: '0 */2 * * *'
+  #workflow_dispatch:
 
 jobs:
   run-code:
